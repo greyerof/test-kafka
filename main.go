@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -88,14 +89,12 @@ func main() {
 
 	defer consumer.Close()
 
+	fmt.Printf("Polling kafka messages from topic %q, server: %q\n", *topicFlag, server)
 	for {
-		fmt.Printf("Polling kafka messages from topic %q, server: %q\n", *topicFlag, server)
 		ev := consumer.Poll(1000)
 		switch e := ev.(type) {
 		case *kafka.Message:
-			msg := ev.(*kafka.Message)
-			fmt.Printf("Received event msg: %v\n", *msg)
-			fmt.Printf("  %% Message on %s:\n%s\n", e.TopicPartition, string(e.Value))
+			fmt.Printf("%v - Message recieved on topic %v:\n%v\n", time.Now(), e.TopicPartition, string(e.Value))
 		case kafka.Error:
 			fmt.Printf("ERROR: failed reading kafka events: %v\n", e)
 			os.Exit(0)
