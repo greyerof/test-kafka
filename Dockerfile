@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi:9.5-1738814488 as builder
+FROM registry.access.redhat.com/ubi9/ubi:9.5-1739751568 as builder
 
 RUN dnf install iputils jq procps gcc --assumeyes --disableplugin=subscription-manager
 # Install go version 1.23, which is not available in the pinned ubi9 yet
@@ -18,7 +18,7 @@ COPY main.go .
 RUN go build -o kafka-consumer main.go
 
 # New image, without go and gcc.
-FROM registry.access.redhat.com/ubi9/ubi:9.5-1738814488
+FROM registry.access.redhat.com/ubi9/ubi:9.5-1739751568
 RUN dnf install iputils jq procps --assumeyes --disableplugin=subscription-manager
 
 COPY --from=builder /kafka-consumer .
