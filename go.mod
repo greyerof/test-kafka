@@ -7,7 +7,7 @@ toolchain go1.24.0
 require (
 	github.com/cloudevents/sdk-go/protocol/kafka_confluent/v2 v2.0.0-20250214143010-93e1a8d64cd6
 	github.com/cloudevents/sdk-go/v2 v2.15.2
-	github.com/confluentinc/confluent-kafka-go/v2 v2.3.0
+	github.com/confluentinc/confluent-kafka-go/v2 v2.8.0
 )
 
 require (
