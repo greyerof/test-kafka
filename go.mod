@@ -2,7 +2,7 @@ module github.com/greyerof/test-kafka
 
 go 1.22
 
-toolchain go1.23.1
+toolchain go1.24.0
 
 require (
 	github.com/cloudevents/sdk-go/protocol/kafka_confluent/v2 v2.0.0-20250214143010-93e1a8d64cd6
